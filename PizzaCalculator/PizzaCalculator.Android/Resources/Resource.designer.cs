@@ -47,6 +47,9 @@ namespace PizzaCalculator.Droid
 			// aapt resource value: 0x7f050001
 			public const int calculateButton = 2131034113;
 			
+			// aapt resource value: 0x7f050003
+			public const int callButton = 2131034115;
+			
 			// aapt resource value: 0x7f050000
 			public const int peopleEntry = 2131034112;
 			
@@ -103,6 +106,9 @@ namespace PizzaCalculator.Droid
 			
 			// aapt resource value: 0x7f040002
 			public const int calculate = 2130968578;
+			
+			// aapt resource value: 0x7f040003
+			public const int call = 2130968579;
 			
 			// aapt resource value: 0x7f040000
 			public const int hello = 2130968576;

@@ -7,8 +7,6 @@ namespace PizzaCalculator.Droid
     [Activity(Label = "PizzaCalculator", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -19,12 +17,18 @@ namespace PizzaCalculator.Droid
             var peopleEntry = FindViewById<EditText>(Resource.Id.peopleEntry);
             var calculate = FindViewById<Button>(Resource.Id.calculateButton);
             var pizzaCount = FindViewById<TextView>(Resource.Id.pizzaCountLabel);
+            var callButton = FindViewById<Button>(Resource.Id.callButton);
+            var phoneDialer = new PhoneDialer(this);
+            var pizzaCalculatorService = new PizzaCalculatorService(phoneDialer);
 
             calculate.Click += delegate
             {
-                var count = int.Parse(peopleEntry.Text);
-                var pizzas = count / 3;
-                pizzaCount.Text = pizzas.ToString();
+                pizzaCount.Text = pizzaCalculatorService.Calculate(peopleEntry.Text);
+            };
+
+            callButton.Click += delegate
+            {
+                pizzaCalculatorService.CallPizzaParlor();
             };
         }
     }

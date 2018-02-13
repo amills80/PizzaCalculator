@@ -15,14 +15,28 @@ namespace PizzaCalculator.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
+            var dialer = new PhoneDialer(this);
+            var pizzaCalculatorService = new PizzaCalculatorService(dialer);
             // Perform any additional setup after loading the view, typically from a nib.
-            Button.AccessibilityIdentifier = "myButton";
-            Button.TouchUpInside += delegate
+            CalculateButton.TouchUpInside += delegate
             {
-                var title = string.Format("{0} clicks!", count++);
-                Button.SetTitle(title, UIControlState.Normal);
+                PizzaCountLabel.Text = pizzaCalculatorService.Calculate(PeopleEntry.Text);
+                PeopleEntry.ResignFirstResponder();
             };
+            CallButton.TouchUpInside += delegate
+            {
+                pizzaCalculatorService.CallPizzaParlor();
+            };
+
+
+
+            ////Original button content
+            //Button.AccessibilityIdentifier = "myButton";
+            //Button.TouchUpInside += delegate
+            //{
+            //    var title = string.Format("{0} clicks!", count++);
+            //    Button.SetTitle(title, UIControlState.Normal);
+            //};
         }
 
         public override void DidReceiveMemoryWarning()
